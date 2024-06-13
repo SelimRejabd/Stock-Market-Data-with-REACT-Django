@@ -15,7 +15,7 @@ This repository contains the source code for the Janata WiFi Task backend projec
 2. Install the required dependencies: `pip install -r requirements.txt`
 3. Set up the database: `python manage.py migrate`
 4. Start the development server: `python manage.py runserver`
-5. If you want to use a new database, to data from json file to database: `python manage.py load_data`
+5. If you want to use a new database, to load data from json file to database: `python manage.py load_data`
 
 ## Usage and api
 
