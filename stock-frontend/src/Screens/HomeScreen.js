@@ -1,4 +1,4 @@
-import React, { useEffect, useState, } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -17,10 +17,15 @@ const HomeScreen = () => {
   );
   const successMessage = useSelector((state) => state.stocks.successMessage);
   const [pageInput, setPageInput] = useState(page);
+  const [searchData, setSearchData] = useState("");
 
   useEffect(() => {
-    dispatch(fetchStockData(page));
-  }, [dispatch, page]);
+    const value = {
+      page,
+      searchData,
+    };
+    dispatch(fetchStockData(value));
+  }, [dispatch, page, searchData]);
 
   useEffect(() => {
     if (successMessage) {
@@ -53,22 +58,33 @@ const HomeScreen = () => {
     }
   };
 
+  const handleSearch = (e) => {
+    setSearchData(e.target.value);
+  };
+
   return (
     <div className="container mx-auto py-6">
-      <h1 className="text-3xl font-bold mb-4 text-center">STOCK MARKET DATA</h1>
-      <Link to="/add-stock/">
-        <button className="bg-green-500 text-white px-4 py-2 rounded mt-5 mb-5">
-          Add Stock
-        </button>
-      </Link>
+      <h1 className="text-3xl font-bold text-center">STOCK MARKET DATA</h1>
+      <div className="flex justify-between mt-5 ml-10 mr-10">
+        <Link to="/add-stock/">
+          <button className="bg-green-500 text-white px-4 py-2 rounded mt-5 mb-5">
+            Add Stock
+          </button>
+        </Link>
+
+        <input
+          type="text"
+          placeholder="Search by id, trade code or date"
+          value={searchData}
+          onChange={handleSearch}
+          className="h-10 w-[300px] mt-5 mp-10 shadow appearance-none border rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+      </div>
       {loading ? (
         <p>Loading...</p>
       ) : (
         <>
-          <StockTable
-            data={stockData}
-            onDelete={handleDeleteStock}
-          />
+          <StockTable data={stockData} onDelete={handleDeleteStock} />
           <div className="flex justify-center mt-4">
             <button
               className="bg-blue-500 text-white mr-10 px-4 py-2 rounded"

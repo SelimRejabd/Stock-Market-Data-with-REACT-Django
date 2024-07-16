@@ -12,9 +12,9 @@ export const stockDataFromJsonFile = createAsyncThunk(
 
 export const fetchStockData = createAsyncThunk(
   "stocks/fetchStockData",
-  async (page) => {
-    const response = await fetch(`/api/stocks-data?page=${page}`);
-    const data = await response.json();
+  async (value) => {
+    const response = await axios.get(`/api/stocks-data/?search=${value.searchData}&page=${value.page}`);
+    const data = response.data;
     return { data: data.results, count: data.count };
   }
 );

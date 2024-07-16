@@ -13,7 +13,12 @@ class CustomPagination(PageNumberPagination):
 
 @api_view(['GET'])
 def get_stocks(request):
-    stocks = StockData.objects.all()
+    search_query = request.query_params.get('search', None)
+    if search_query:
+        stocks = StockData.objects.filter(trade_code__icontains=search_query) | StockData.objects.filter(date__icontains=search_query)
+    else:
+        stocks = StockData.objects.all()
+    
     paginator = CustomPagination()
     result_page = paginator.paginate_queryset(stocks, request)
     serializer = StockDataSerializer(result_page, many=True)

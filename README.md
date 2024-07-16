@@ -1,5 +1,6 @@
-# Steps / commands to run this project
+# Stock Market Data
 
+## Steps/commands to run this project
 1. git clone https://github.com/username/Stock-Market-Data-with-REACT-Django.git
 2. cd Stock-Market-Data-with-REACT-Django
 3. On Windows, use venv\Scripts\activate (activate virtual environment for django)
@@ -11,11 +12,6 @@
 9. npm run build
 10. cd ..
 11. python manage.py runserver
-
-
-
-
-# Stock Market Data
 
 ## Description
 
