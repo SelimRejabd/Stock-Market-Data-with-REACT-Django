@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 const StockTable = ({ data, onDelete }) => {
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200">
+      <table className="min-w-full divide-y divide-gray-200 ml-10">
         <thead className="bg-gray-50">
           <tr>
+          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Id
+            </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Date
             </th>
@@ -36,6 +39,7 @@ const StockTable = ({ data, onDelete }) => {
         <tbody className="bg-white divide-y divide-gray-200">
           {data.map((stock, index) => (
             <tr key={index}>
+              <td className="px-1 py-1 whitespace-nowrap">{stock.id}</td>
               <td className="px-1 py-1 whitespace-nowrap">{stock.date}</td>
               <td className="px-1 py-1 whitespace-nowrap">
                 {stock.trade_code}

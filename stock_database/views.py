@@ -15,7 +15,7 @@ class CustomPagination(PageNumberPagination):
 def get_stocks(request):
     search_query = request.query_params.get('search', None)
     if search_query:
-        stocks = StockData.objects.filter(trade_code__icontains=search_query) | StockData.objects.filter(date__icontains=search_query)
+        stocks = StockData.objects.filter(trade_code__icontains=search_query) | StockData.objects.filter(date__icontains=search_query) | StockData.objects.filter(id__icontains=search_query)
     else:
         stocks = StockData.objects.all()
     
